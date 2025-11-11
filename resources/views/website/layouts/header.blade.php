@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top shadow-sm">
+<nav class="navbar navbar-expand-lg bg-body-tertiary  shadow-sm fixed-top">
     <div class="container px-lg-1">
         <a class="navbar-brand d-flex align-items-center gap-2" href="{{ route('home') }}">
             <img src="{{asset('assets/website/images/logo.png')}}" alt="{{ __('header.company_logo') }}" height="70"
@@ -17,6 +17,7 @@
                         aria-current="{{ request()->routeIs('home') ? 'page' : false }}"
                         href="{{ route('home') }}">{{ __('header.home') }}</a>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}"
                         href="{{ route('about') }}">{{ __('header.about') }}</a>

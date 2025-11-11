@@ -202,17 +202,6 @@
                         </a>
                     </div>
                 </div>
-
-                <div class="col-md-4 mb-4 mb-md-0">
-                    <div class="card shadow-sm border-0 overflow-hidden p-3 product-card">
-                        <img src="{{asset('assets/website/images/product_2.png')}}" class="img-fluid"
-                            alt="عمال في المصنع" />
-                        <a href="#" class="product-link">
-                            <h3 class="product-title"> {{ __('home.products.circular_bar') }} </h3>
-                        </a>
-                    </div>
-                </div>
-
             </div>
         </div>
     </section>
@@ -279,28 +268,47 @@
                 <div class="col-lg-6">
                     <div class="contact-form-card p-4 p-lg-5 rounded-4 shadow-lg">
                         <h2 class="contact-title mb-4">{{ __('home.contact_title') }}</h2>
-                        <form class="contact-form">
+
+                        <form class="contact-form" action="{{ route('contact-us.store') }}" method="POST">
+                            @csrf
                             <div class="mb-3">
                                 <label for="homeContactName" class="form-label">{{ __('home.contact_name') }}</label>
-                                <input type="text" class="form-control form-control-lg" id="homeContactName"
+                                <input type="text" class="form-control form-control-lg @error('name') is-invalid @enderror"
+                                    id="homeContactName" name="name" value="{{ old('name') }}"
                                     placeholder="{{ __('home.contact_name_placeholder') }}" />
+                                @error('name')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="homeContactEmail"
                                     class="form-label">{{ __('home.contact_email_label') }}</label>
-                                <input type="email" class="form-control form-control-lg" id="homeContactEmail"
+                                <input type="email"
+                                    class="form-control form-control-lg @error('email') is-invalid @enderror"
+                                    id="homeContactEmail" name="email" value="{{ old('email') }}"
                                     placeholder="your@email.com" />
+                                @error('email')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="homeContactPhone"
                                     class="form-label">{{ __('home.contact_phone_label') }}</label>
-                                <input type="tel" class="form-control form-control-lg" id="homeContactPhone"
+                                <input type="tel" class="form-control form-control-lg @error('phone') is-invalid @enderror"
+                                    id="homeContactPhone" name="phone" value="{{ old('phone') }}"
                                     placeholder="05xxxxxxxx" />
+                                @error('phone')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="mb-4">
                                 <label for="homeContactMessage" class="form-label">{{ __('home.contact_message') }}</label>
-                                <textarea class="form-control form-control-lg" id="homeContactMessage" rows="5"
-                                    placeholder="{{ __('home.contact_message_placeholder') }}"></textarea>
+                                <textarea class="form-control form-control-lg @error('message') is-invalid @enderror"
+                                    id="homeContactMessage" name="message" rows="5"
+                                    placeholder="{{ __('home.contact_message_placeholder') }}">{{ old('message') }}</textarea>
+                                @error('message')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                             <button type="submit" class="btn btn-primary btn-lg w-100 rounded-3">
                                 <i class="fas fa-paper-plane me-2"></i>

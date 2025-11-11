@@ -34,5 +34,12 @@
             </a>
         </li>
 
+        <li class="menu-item {{ request()->routeIs('dashboard.products.*') ? 'active' : '' }}">
+            <a href="{{ route('dashboard.products.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-package"></i>
+                <div data-i18n="Products">Products</div>
+            </a>
+        </li>
+
     </ul>
 </aside>
